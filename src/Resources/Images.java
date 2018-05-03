@@ -162,6 +162,7 @@ public class Images {
             particleSmoke[2]= newsheet.crop(154,400,20,35);
 
             items[0]= newsheet.crop(114,448,30,24);//log
+            items[1]= ImageIO.read(getClass().getResourceAsStream("/Saved%20Pictures/stick.png"));
 
             numbers[1]= numsheet.crop(17,15,17,22);
             numbers[2]= numsheet.crop(64,16,14,19);
