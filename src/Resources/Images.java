@@ -163,6 +163,7 @@ public class Images {
 
             items[0]= newsheet.crop(114,448,30,24);//log
             items[1]= ImageIO.read(getClass().getResourceAsStream("/Sheets/stick.png"));//stick
+            items[2]= ImageIO.read(getClass().getResourceAsStream("/Sheets/bone.png"));//bone
 
             numbers[1]= numsheet.crop(17,15,17,22);
             numbers[2]= numsheet.crop(64,16,14,19);
