@@ -45,6 +45,7 @@ public class Images {
     public static BufferedImage[] FireBallDown;
     public static BufferedImage loading;
     public static BufferedImage spellGUI;
+    public static BufferedImage[] chest;
 
 
     public Images() {
@@ -56,7 +57,7 @@ public class Images {
         SpriteSheet FireBallRightsheet = new SpriteSheet(Images.loadImage("/Sheets/FireBallRight.png"));
         SpriteSheet FireBallUpsheet = new SpriteSheet(Images.loadImage("/Sheets/FireBallUp.png"));
         SpriteSheet FireBallDownsheet = new SpriteSheet(Images.loadImage("/Sheets/FireBallDown.png"));
-
+        SpriteSheet chestsheet = new SpriteSheet(Images.loadImage("/Sheets/chest2.png"));
 
 
         blocks = new BufferedImage[16];
@@ -85,7 +86,7 @@ public class Images {
         FireBallUp = new BufferedImage[6];
         FireBallDown = new BufferedImage[6];
 
-
+        chest = new BufferedImage[2];
 
 
         try {
@@ -245,6 +246,9 @@ public class Images {
             SkelyEnemy_back[1]=newsheet.crop(164,227+130,width,height);
             SkelyEnemy_back[2]=newsheet.crop(196,227+130,width,height);
             SkelyEnemy_back[3]=newsheet.crop(228,227+130,28,height);
+            
+            //chest
+           // chest[0]= chestsheet.crop(50, 20, width, height);
 
         } catch (IOException e) {
             e.printStackTrace();
