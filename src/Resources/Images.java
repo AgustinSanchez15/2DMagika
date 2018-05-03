@@ -59,7 +59,7 @@ public class Images {
 
 
 
-        blocks = new BufferedImage[15];
+        blocks = new BufferedImage[16];
 
         player_left = new BufferedImage[4];
         player_right = new BufferedImage[4];
@@ -201,7 +201,7 @@ public class Images {
             blocks[12] = newsheet.crop(0,260,Bwidth,Bheight);//mossyrock
             blocks[13] = newsheet.crop(176,0,Bwidth,Bheight*2);//tree
             blocks[14] = newsheet.crop(174,410,78,74);//rock
-
+            blocks[15] = ImageIO.read(getClass().getResourceAsStream("/Sheets/stick.png"));//bush
 
             //player anim
             player_front[0]=newsheet.crop(132,131,width,height);
