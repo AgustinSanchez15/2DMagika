@@ -58,7 +58,12 @@ public class Player extends CreatureBase {
         bounds.height=14*2;
         health=75;
         attack=2;
-
+        if(handler.getKeyManager().ibutt) {
+        	while(health<75) {
+        	health++;	
+        	}
+        	System.out.println("Player has regained health by debugger");
+        }
 
         animDown = new Animation(animWalkingSpeed,Images.player_front);
         animLeft = new Animation(animWalkingSpeed,Images.player_left);
@@ -137,7 +142,12 @@ public class Player extends CreatureBase {
             FireBallAttack(g);
 
         }
-
+        if(handler.getKeyManager().ibutt) {
+        	while(health<76) {
+        	health++;	
+        	}
+        	System.out.println("Player has regained health by debugger.");
+        }
 
 
 
