@@ -63,8 +63,7 @@ public class Images {
         SpriteSheet chest = new SpriteSheet(Images.loadImage("/Sheets/chest2.png"));
         SpriteSheet boss = new SpriteSheet(Images.loadImage("/Sheets/Charactervector.png"));
 
-
-        blocks = new BufferedImage[18];
+        blocks = new BufferedImage[19];
 
         player_left = new BufferedImage[4];
         player_right = new BufferedImage[4];
@@ -212,6 +211,7 @@ public class Images {
             blocks[15] = ImageIO.read(getClass().getResourceAsStream("/Sheets/bush.png"));//bush
             blocks[16] = chest.crop(0,0,31,31);//closed chest
             blocks[17] = chest.crop(33,0,30,31);//opened chest
+            blocks[18] = ImageIO.read(getClass().getResourceAsStream("/Sheets/chestItems.png"));//message that displays in the chest
 
             //player anim
             player_front[0]=newsheet.crop(132,131,width,height);

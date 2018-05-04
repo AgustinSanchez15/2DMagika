@@ -68,7 +68,7 @@ public class Chest extends StaticEntity {
             g.drawImage(Images.E,(int) x+width+10,(int) y+10,32,32,null);
         }else if(ir.contains(pr) && EP){
             g.drawImage(Images.EP,(int) x+width+10,(int) y+10,32,32,null);
-            //g.drawImage(Images.chestItems,200,300,400,200,null);
+            g.drawImage(Images.blocks[18],200,300,400,200,null);
             g.drawImage(Images.blocks[17], (int)(x-handler.getGameCamera().getxOffset()),(int)(y-handler.getGameCamera().getyOffset()),width,height,null);
             
         }
