@@ -1,4 +1,5 @@
 package Worlds;
+import Game.Entities.Creatures.Boss;
 import Game.Entities.Creatures.Player;
 import Main.Handler;
 
@@ -14,6 +15,7 @@ public class CaveWorld extends BaseWorld{
         this.handler = handler;
         this.player=player;
 
+        entityManager.addEntity(new Boss(handler, 1250, 500));
     }
 
 

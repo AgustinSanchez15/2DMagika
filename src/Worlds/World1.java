@@ -24,19 +24,24 @@ public class World1 extends BaseWorld{
 
 		entityManager.addEntity(new Tree(handler, 100, 250));
 		entityManager.addEntity(new Rock(handler, 100, 450));
-		entityManager.addEntity(new Tree(handler, 533, 276));
+		entityManager.addEntity(new Tree(handler, 633, 376));
 		entityManager.addEntity(new Rock(handler, 684, 1370));
 		entityManager.addEntity(new Tree(handler, 765, 888));
 		entityManager.addEntity(new Rock(handler, 88, 1345));
 		entityManager.addEntity(new Tree(handler, 77, 700));
 		entityManager.addEntity(new Rock(handler, 700, 83));
-		//entityManager.addEntity(new Door(handler, 100, 0,caveWorld));
+		entityManager.addEntity(new Door(handler, 100, 0,caveWorld));
 		entityManager.addEntity(new SkelyEnemy(handler, 1250, 500));
-		entityManager.addEntity(new Bush(handler, 387, 300));
+		entityManager.addEntity(new Bush(handler, 387, 500));
 		entityManager.addEntity(new Bush(handler, 1079, 891));
 		entityManager.addEntity(new Bush(handler, 275, 620));
 		entityManager.addEntity(new Bush(handler, 415, 142));
+<<<<<<< HEAD
 		entityManager.addEntity(new Chest(handler, 240, 150));
+=======
+		entityManager.addEntity(new Chest(handler, 250, 0,caveWorld));
+		
+>>>>>>> refs/heads/foo
 		
 		
 		entityManager.getPlayer().setX(spawnX);

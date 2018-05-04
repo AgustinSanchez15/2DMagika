@@ -37,7 +37,7 @@ public class SkelyEnemy extends CreatureBase  {
         bounds.width=16*2;
         bounds.height=14*2;
         speed=1.5f;
-        health=50;
+        health=4; //50
 
         SkelyCam= new Rectangle();
 
