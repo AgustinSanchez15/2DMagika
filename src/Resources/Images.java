@@ -45,7 +45,6 @@ public class Images {
     public static BufferedImage[] FireBallDown;
     public static BufferedImage loading;
     public static BufferedImage spellGUI;
-    public static BufferedImage[] chest;
 
 
     public Images() {
@@ -57,10 +56,10 @@ public class Images {
         SpriteSheet FireBallRightsheet = new SpriteSheet(Images.loadImage("/Sheets/FireBallRight.png"));
         SpriteSheet FireBallUpsheet = new SpriteSheet(Images.loadImage("/Sheets/FireBallUp.png"));
         SpriteSheet FireBallDownsheet = new SpriteSheet(Images.loadImage("/Sheets/FireBallDown.png"));
-        SpriteSheet chestsheet = new SpriteSheet(Images.loadImage("/Sheets/chest2.png"));
+        SpriteSheet chest = new SpriteSheet(Images.loadImage("/Sheets/chest2.png"));
 
 
-        blocks = new BufferedImage[16];
+        blocks = new BufferedImage[18];
 
         player_left = new BufferedImage[4];
         player_right = new BufferedImage[4];
@@ -86,7 +85,6 @@ public class Images {
         FireBallUp = new BufferedImage[6];
         FireBallDown = new BufferedImage[6];
 
-        chest = new BufferedImage[2];
 
 
         try {
@@ -204,6 +202,8 @@ public class Images {
             blocks[13] = newsheet.crop(176,0,Bwidth,Bheight*2);//tree
             blocks[14] = newsheet.crop(174,410,78,74);//rock
             blocks[15] = ImageIO.read(getClass().getResourceAsStream("/Sheets/bush.png"));//bush
+            blocks[16] = chest.crop(0,0,31,31);//closed chest
+            blocks[17] = chest.crop(33,0,30,31);//opened chest
 
             //player anim
             player_front[0]=newsheet.crop(132,131,width,height);
