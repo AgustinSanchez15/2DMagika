@@ -247,8 +247,9 @@ public class Images {
             SkelyEnemy_back[2]=newsheet.crop(196,227+130,width,height);
             SkelyEnemy_back[3]=newsheet.crop(228,227+130,28,height);
             
-            //chest
-           // chest[0]= chestsheet.crop(50, 20, width, height);
+            //chest anim
+           chest[0]= chestsheet.crop(0, 0, width, height);
+           chest[1]= chestsheet.crop(32, 0, width, height);
 
         } catch (IOException e) {
             e.printStackTrace();
