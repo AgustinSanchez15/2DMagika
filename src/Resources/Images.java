@@ -45,10 +45,7 @@ public class Images {
     public static BufferedImage[] FireBallDown;
     public static BufferedImage loading;
     public static BufferedImage spellGUI;
-    public static BufferedImage[] Boss_right;
-    public static BufferedImage[] Boss_left;
-    public static BufferedImage[] Boss_front;
-    public static BufferedImage[] Boss_back;
+    public static BufferedImage[] chest;
 
 
     public Images() {
@@ -60,10 +57,10 @@ public class Images {
         SpriteSheet FireBallRightsheet = new SpriteSheet(Images.loadImage("/Sheets/FireBallRight.png"));
         SpriteSheet FireBallUpsheet = new SpriteSheet(Images.loadImage("/Sheets/FireBallUp.png"));
         SpriteSheet FireBallDownsheet = new SpriteSheet(Images.loadImage("/Sheets/FireBallDown.png"));
-        SpriteSheet chest = new SpriteSheet(Images.loadImage("/Sheets/chest2.png"));
+        SpriteSheet chestsheet = new SpriteSheet(Images.loadImage("/Sheets/chest2.png"));
         SpriteSheet boss = new SpriteSheet(Images.loadImage("/Sheets/Charactervector.png"));
 
-        blocks = new BufferedImage[19];
+        blocks = new BufferedImage[16];
 
         player_left = new BufferedImage[4];
         player_right = new BufferedImage[4];
@@ -89,10 +86,8 @@ public class Images {
         FireBallUp = new BufferedImage[6];
         FireBallDown = new BufferedImage[6];
 
-        Boss_right = new BufferedImage[4];
-        Boss_left = new BufferedImage[4];
-        Boss_front = new BufferedImage[4];
-        Boss_back = new BufferedImage[4];
+        chest = new BufferedImage[2];
+
 
         try {
 
@@ -209,9 +204,6 @@ public class Images {
             blocks[13] = newsheet.crop(176,0,Bwidth,Bheight*2);//tree
             blocks[14] = newsheet.crop(174,410,78,74);//rock
             blocks[15] = ImageIO.read(getClass().getResourceAsStream("/Sheets/bush.png"));//bush
-            blocks[16] = chest.crop(0,0,31,31);//closed chest
-            blocks[17] = chest.crop(33,0,30,31);//opened chest
-            blocks[18] = ImageIO.read(getClass().getResourceAsStream("/Sheets/chestItems.png"));//message that displays in the chest
 
             //player anim
             player_front[0]=newsheet.crop(132,131,width,height);
@@ -255,32 +247,9 @@ public class Images {
             SkelyEnemy_back[2]=newsheet.crop(196,227+130,width,height);
             SkelyEnemy_back[3]=newsheet.crop(228,227+130,28,height);
             
-<<<<<<< HEAD
             //chest anim
            chest[0]= chestsheet.crop(0, 0, width, height);
            chest[1]= chestsheet.crop(32, 0, width, height);
-=======
-          //Boss in cavern world
-            Boss_left[0]=boss.crop(48,1296,309, 432);
-            Boss_left[1]=boss.crop(438,1320,312,408);
-            Boss_left[2]=boss.crop(840,1299,312,429);
-            Boss_left[3]=boss.crop(1248,1320,309,405);
-            
-            Boss_right[0]=boss.crop(45,1920,312,408);
-            Boss_right[1]=boss.crop(432,1899,321,429);
-            Boss_right[2]=boss.crop(840,1920,312,408);
-            Boss_right[3]=boss.crop(1248,1899,312,429);
-            
-            Boss_front[0]=boss.crop(18,99,357,456);
-            Boss_front[1]=boss.crop(432,123,348,432);
-            Boss_front[2]=boss.crop(813,96,360,459);
-            Boss_front[3]=boss.crop(1224,120,333,435);
-            
-            Boss_back[0]=boss.crop(21,696,360,456);
-            Boss_back[1]=boss.crop(438,720,342,432);
-            Boss_back[2]=boss.crop(816,696,357,456);
-            Boss_back[3]=boss.crop(1224,720,333,435);
->>>>>>> refs/heads/foo
 
         } catch (IOException e) {
             e.printStackTrace();
