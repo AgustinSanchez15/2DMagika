@@ -3,6 +3,7 @@ package Game.Entities.Statics;
 import java.awt.Graphics;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -23,6 +24,8 @@ public class Bush extends StaticEntity{
     private AudioFormat format;
     private DataLine.Info info;
     private Clip audioClip;
+    private Random rand = new Random();
+    
 	public Bush(Handler handler, float x, float y) {
 		super(handler, x, y, Tile.TILEHEIGHT+20, Tile.TILEWIDTH+20);
         bounds.x=20;
@@ -77,9 +80,11 @@ public class Bush extends StaticEntity{
 
     @Override
     public void die() {
-        handler.getWorld().getItemManager().addItem(Item.stickItem.createNew((int)x + bounds.x,(int)y + bounds.y,1));
-
-
+    	int random = rand.nextInt(2)+1, count = 0;
+    	while(count<random) {
+    		handler.getWorld().getItemManager().addItem(Item.stickItem.createNew((int)x + bounds.x,(int)y + bounds.y,1));
+    		count ++;
+    	}
     }
 
     public void renderLife(Graphics g) {
