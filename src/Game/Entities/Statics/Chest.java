@@ -15,6 +15,7 @@ public class Chest extends StaticEntity{
 	private Rectangle ir = new Rectangle();
 	public Boolean EP = false;
 	public Boolean isOpen = false;
+	public Boolean justPressed = false;
 
 	public Chest(Handler handler, float x, float y) {
 		super(handler, x, y, Tile.TILEHEIGHT, Tile.TILEWIDTH);
@@ -59,13 +60,16 @@ public class Chest extends StaticEntity{
 
 		if(ir.contains(pr) && !EP){
 			g.drawImage(Images.E,(int) x+width,(int) y+10,32,32,null);
-		}else if(ir.contains(pr) && EP){
-			g.drawImage(Images.EP,(int) x+width,(int) y+10,32,32,null);
-			isOpen = true;
-
 		}
-		if(ir.contains(pr) && !EP && isOpen) {
+		
+		if(ir.contains(pr) && EP) {
+			if(!justPressed) {
+				isOpen = !isOpen;
+				justPressed = true;
+			} 
 			g.drawImage(Images.EP,(int) x+width,(int) y+10,32,32,null);
+		} else {
+			justPressed = false;
 		}
 	}
 	@Override
