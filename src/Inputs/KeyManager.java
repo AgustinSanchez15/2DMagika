@@ -10,8 +10,19 @@ public class KeyManager implements KeyListener {
 	public boolean attbut=false;
 	public boolean fattbut=false;
 	public boolean pbutt=false;
-	public boolean nbutt=false;
+	private boolean nbutt=false;
 	public boolean ibutt=false;
+	
+	private int count = 0;
+	
+	public boolean getnbutt() {
+		if(nbutt && (count==0)) {
+			count++;
+			return true;
+		}else {
+			return false;
+		}
+	}
 
 	public KeyManager(){
 
@@ -60,6 +71,7 @@ public class KeyManager implements KeyListener {
 		if(e.getKeyCode() < 0 || e.getKeyCode() >= keys.length)
 			return;
 		keys[e.getKeyCode()] = false;
+		if(e.getKeyCode()==KeyEvent.VK_N) count=0;
 	}
 
 	@Override
