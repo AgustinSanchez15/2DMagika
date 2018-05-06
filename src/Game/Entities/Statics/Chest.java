@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import Game.Entities.Creatures.Player;
+import Game.Items.Item;
 import Game.Tiles.Tile;
 import Main.Handler;
 import Resources.Images;
@@ -43,7 +44,22 @@ public class Chest extends StaticEntity{
 		}else if(!handler.getKeyManager().attbut){
 			EP=false;
 		}
+		giveItem("Stick",3,handler.getWorld().getEntityManager().getPlayer());
 
+	}
+	private void giveItem(String itemname, int quantity_needed, Player p) {
+		int itemcount = quantity_needed;
+		if(itemcount<=0) {
+			return;
+		}
+		for(Item pitem : p.getInventory().getInventoryItems()) {
+			if(pitem.getName().equals(itemname) && EP) {
+				pitem.setCount(pitem.getCount()-1);
+				itemcount--;
+			}
+		}
+//		g.drawImage(p.getInventory().inventoryItems.get(0).getTexture(), 25, 24, inventoryItems.get(0).getWidth(), inventoryItems.get(0).getHeight(), null);
+//        g.drawString(String.valueOf(int itemcount, 25+33,25+35);
 	}
 
 	@Override
@@ -54,6 +70,7 @@ public class Chest extends StaticEntity{
 			g.drawImage(Images.chest[1],(int)(x-handler.getGameCamera().getxOffset()),(int)(y-handler.getGameCamera().getyOffset()),width,height,null);
 		}
 		checkForPlayer(g, handler.getWorld().getEntityManager().getPlayer());
+		
 	}
 	private void checkForPlayer(Graphics g, Player p) {
 		Rectangle pr = p.getCollisionBounds(0,0);
