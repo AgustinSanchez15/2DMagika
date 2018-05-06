@@ -17,6 +17,7 @@ public class Chest extends StaticEntity{
 	public Boolean EP = false;
 	public Boolean isOpen = false;
 	public Boolean justPressed = false;
+	private int stickCount = 0;														//Edit: Here is the stickCount initiation 
 
 	public Chest(Handler handler, float x, float y) {
 		super(handler, x, y, Tile.TILEHEIGHT, Tile.TILEWIDTH);
@@ -44,7 +45,6 @@ public class Chest extends StaticEntity{
 		}else if(!handler.getKeyManager().attbut){
 			EP=false;
 		}
-		giveItem("Stick",3,handler.getWorld().getEntityManager().getPlayer());
 
 	}
 	private void giveItem(String itemname, int quantity_needed, Player p) {
@@ -52,14 +52,22 @@ public class Chest extends StaticEntity{
 		if(itemcount<=0) {
 			return;
 		}
-		for(Item pitem : p.getInventory().getInventoryItems()) {
-			if(pitem.getName().equals(itemname) && EP) {
-				pitem.setCount(pitem.getCount()-1);
-				itemcount--;
+		if(stickCount < 3) {												//Edit:Included a stickCount and the chest does not take more sticks
+			for(Item pitem : p.getInventory().getInventoryItems()) {		//when stickCount has 3 sticks already, also when the player has two or 
+				if(pitem.getName().equals(itemname) && EP) {				//more stick, when they open it, it takes all the sticks away until the 
+					while(pitem.getCount() > 0) {							//player has no more or stickCount has 3
+						pitem.setCount(pitem.getCount()-1);					//Lastly, the chest takes the sticks when the player opens it, not closing it.
+						itemcount--;
+						stickCount++;
+						if(stickCount >= 3) {
+							break;
+						}
+					}
+				}
 			}
 		}
-//		g.drawImage(p.getInventory().inventoryItems.get(0).getTexture(), 25, 24, inventoryItems.get(0).getWidth(), inventoryItems.get(0).getHeight(), null);
-//        g.drawString(String.valueOf(int itemcount, 25+33,25+35);
+		//		g.drawImage(p.getInventory().inventoryItems.get(0).getTexture(), 25, 24, inventoryItems.get(0).getWidth(), inventoryItems.get(0).getHeight(), null);
+		//        g.drawString(String.valueOf(int itemcount, 25+33,25+35);
 	}
 
 	@Override
@@ -70,7 +78,7 @@ public class Chest extends StaticEntity{
 			g.drawImage(Images.chest[1],(int)(x-handler.getGameCamera().getxOffset()),(int)(y-handler.getGameCamera().getyOffset()),width,height,null);
 		}
 		checkForPlayer(g, handler.getWorld().getEntityManager().getPlayer());
-		
+
 	}
 	private void checkForPlayer(Graphics g, Player p) {
 		Rectangle pr = p.getCollisionBounds(0,0);
@@ -78,11 +86,14 @@ public class Chest extends StaticEntity{
 		if(ir.contains(pr) && !EP){
 			g.drawImage(Images.E,(int) x+width,(int) y+10,32,32,null);
 		}
-		
+
 		if(ir.contains(pr) && EP) {
 			if(!justPressed) {
 				isOpen = !isOpen;
 				justPressed = true;
+				if(isOpen) {
+					giveItem("Stick",3,handler.getWorld().getEntityManager().getPlayer());	//Edit: method implemented here
+				}
 			} 
 			g.drawImage(Images.EP,(int) x+width,(int) y+10,32,32,null);
 		} else {
