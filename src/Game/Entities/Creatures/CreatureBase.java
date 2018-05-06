@@ -29,6 +29,8 @@ public abstract class CreatureBase extends EntityBase {
     protected long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
 
     protected boolean ld=true,ll=false,lr=false,lu=false;
+	protected boolean x1, x2;
+	protected boolean case1, case2, case3, case4;
 
 
     public CreatureBase(Handler handler, float x, float y, int height, int width) {
