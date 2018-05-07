@@ -78,7 +78,7 @@ public class Images {
 
         butstart = new BufferedImage[3];
         particleSmoke = new BufferedImage[3];
-        items = new BufferedImage[3];
+        items = new BufferedImage[4];
         numbers = new BufferedImage[21];
         Resume = new BufferedImage[2];
         BTitle = new BufferedImage[2];
@@ -174,6 +174,7 @@ public class Images {
             items[0]= newsheet.crop(114,448,30,24);//log
             items[1]= ImageIO.read(getClass().getResourceAsStream("/Sheets/stick.png"));//stick
             items[2]= ImageIO.read(getClass().getResourceAsStream("/Sheets/bone.png"));//bone
+            items[3] = ImageIO.read(getClass().getResourceAsStream("/Sheets/key.png"));//key
 
             numbers[1]= numsheet.crop(17,15,17,22);
             numbers[2]= numsheet.crop(64,16,14,19);

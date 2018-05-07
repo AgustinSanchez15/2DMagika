@@ -32,6 +32,7 @@ public class Item {
     public static Item fireRuneItem = new Item(Images.Runes[2],"Fire Rune",2);
     public static Item stickItem = new Item(Images.items[1],"Stick",3);
     public static Item boneItem = new Item(Images.items[2],"Bone",4);
+    public static Item keyItem = new Item(Images.items[3], "Key", 5);
 
 
     //class
