@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import Game.Entities.Creatures.Boss;
 //import Game.Entities.Creatures.Boss;
 import Game.Entities.Creatures.Player;
+import Game.Entities.Statics.Door;
 import Main.Handler;
 
 /**
@@ -20,7 +21,7 @@ public class CaveWorld extends BaseWorld{
         this.player=player;
         World3 = new World3(handler,"res/Maps/map3.map",player);
 
-        entityManager.addEntity(new Boss(handler, 1250, 500));
+        entityManager.addEntity(new Door(handler, 300, 0, World3));
     }
     public void render(Graphics g){
 		super.render(g);
