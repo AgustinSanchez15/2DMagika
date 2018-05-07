@@ -50,7 +50,7 @@ public class Images {
     public static BufferedImage[] Boss_left;
     public static BufferedImage[] Boss_front;
     public static BufferedImage[] Boss_back;
-
+    public static BufferedImage narrowVision;
 
     public Images() {
 
@@ -105,6 +105,7 @@ public class Images {
 
             inventory = ImageIO.read(getClass().getResourceAsStream("/Sheets/guit.png"));
             title = ImageIO.read(getClass().getResourceAsStream("/Sheets/Title.png"));
+            narrowVision = ImageIO.read(getClass().getResourceAsStream("/Sheets/narrowVision.png"));
             door = ImageIO.read(getClass().getResourceAsStream("/Sheets/Door.png"));
             E = ImageIO.read(getClass().getResourceAsStream("/Buttons/E.png"));
             EP = ImageIO.read(getClass().getResourceAsStream("/Buttons/EP.png"));
