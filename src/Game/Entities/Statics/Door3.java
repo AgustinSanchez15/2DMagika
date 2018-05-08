@@ -77,7 +77,7 @@ public class Door3 extends StaticEntity {
             g.drawImage(Images.EP,(int) x+width,(int) y+10,32,32,null);
             if(!justPressed) {
             	if(doorOpened) {
-            		//TODO: show message win
+            		handler.getGame().gameState.setState(handler.getGame().winState);
             	}
             	if(!doorOpened) {
             		for(Item pitem : p.getInventory().getInventoryItems()) {
