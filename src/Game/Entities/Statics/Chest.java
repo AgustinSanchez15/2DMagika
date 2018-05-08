@@ -50,9 +50,9 @@ public class Chest extends StaticEntity{
 	}
 	private void giveItem(String itemname, int quantity_needed, Player p) {
 		int itemcount = 0;
-		if(itemcount<=quantity_needed) {
+		while(itemcount<=quantity_needed) {
 			for(Item pitem : p.getInventory().getInventoryItems()) {		//when stickCount has 3 sticks already, also when the player has two or 
-				if(pitem.getName().equals(itemname) && EP && isBeinghurt()) {				//more stick, when they open it, it takes all the sticks away until the 
+				if(pitem.getName().equals(itemname)) {				//more stick, when they open it, it takes all the sticks away until the 
 																				//player has no more or stickCount has 3
 					pitem.setCount(pitem.getCount()-1);					//Lastly, the chest takes the sticks when the player opens it, not closing it.
 					itemcount++;	
