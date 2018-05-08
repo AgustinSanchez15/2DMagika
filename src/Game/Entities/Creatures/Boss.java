@@ -37,7 +37,7 @@ public class Boss extends CreatureBase  {
 		bounds.width=16*2;
 		bounds.height=14*2;
 		speed=1.5f;
-		health=4;//50
+		health=30;//50
 
 		BossCam= new Rectangle();
 
@@ -320,6 +320,6 @@ public class Boss extends CreatureBase  {
 	*/
 	@Override
 	public void die() {
-
+		handler.getGame().setDoorVisible(true);
 	}
 }

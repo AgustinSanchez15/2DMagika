@@ -7,6 +7,16 @@ import Resources.Images;
 import Worlds.BaseWorld;
 
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  * Created by Elemental on 2/2/2017.
@@ -19,6 +29,11 @@ public class Door extends StaticEntity {
 	public Boolean EP = false;
 
 	private BaseWorld world;
+	private File audioFile;
+    private AudioInputStream audioStream;
+    private AudioFormat format;
+    private DataLine.Info info;
+    private Clip audioClip;
 
 	public Door(Handler handler, float x, float y,BaseWorld world) {
 		super(handler, x, y, 64, 100);
@@ -35,6 +50,23 @@ public class Door extends StaticEntity {
 		int iry= (int)(bounds.y-handler.getGameCamera().getyOffset()+height);
 		ir.y=iry;
 		ir.x=irx;
+		
+
+		try {
+            audioFile = new File("res/music/key.wav");
+            audioStream = AudioSystem.getAudioInputStream(audioFile);
+            format = audioStream.getFormat();
+            info = new DataLine.Info(Clip.class, format);
+            audioClip = (Clip) AudioSystem.getLine(info);
+            audioClip.open(audioStream);
+
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
 	}
 
 	@Override
@@ -56,8 +88,9 @@ public class Door extends StaticEntity {
 	@Override
 	public void render(Graphics g) {
 
-		if(handler.getGame().getDoorVisible() == true) {
+		if(handler.getGame().getDoorVisible()) {
 			g.drawImage(Images.door,(int)(x-handler.getGameCamera().getxOffset()),(int)(y-handler.getGameCamera().getyOffset()),width,height,null);
+			audioClip.start();
 		}
 
 		g.setColor(Color.black);
@@ -68,14 +101,15 @@ public class Door extends StaticEntity {
 		Rectangle pr = p.getCollisionBounds(0,0);
 
 		if(ir.contains(pr) && !EP){
-			if(handler.getGame().getDoorVisible() == true) {
+			if(handler.getGame().getDoorVisible()) {
 				g.drawImage(Images.E,(int) x+width,(int) y+10,32,32,null);
 			}
 		}else if(ir.contains(pr) && EP){
-			if(handler.getGame().getDoorVisible() == true) {
+			if(handler.getGame().getDoorVisible()) {
 				g.drawImage(Images.EP,(int) x+width,(int) y+10,32,32,null);
 				g.drawImage(Images.loading,0,0,800,600,null);
 				handler.setWorld(world);
+				handler.getGame().setDoorVisible(false);
 			}
 		}
 
@@ -86,7 +120,5 @@ public class Door extends StaticEntity {
 	public void die() {
 
 	}
-	public void setAccomplished(boolean accomplished) {
-		this.accomplished = accomplished;
-	}
+	
 }

@@ -50,9 +50,7 @@ public class World1 extends BaseWorld{
 	
 		entityManager.addEntity(door);	
 
-//		if(chest.itemcount >=6) {
-//			door.setAccomplished(true);
-//		}
+
 	}
 
 	public void render(Graphics g){
