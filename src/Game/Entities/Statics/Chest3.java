@@ -3,6 +3,16 @@ package Game.Entities.Statics;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import Game.Entities.Creatures.Player;
 import Game.Items.Item;
@@ -18,7 +28,13 @@ public class Chest3 extends StaticEntity{
 	public Boolean showedMessage = false;
 	public Boolean justPressed = false;
 	public int count = 0;
-	private int keyCount = 0;	
+	private int keyCount = 0;
+	//Res.music
+    private File audioFile;
+    private AudioInputStream audioStream;
+    private AudioFormat format;
+    private DataLine.Info info;
+    private Clip audioClip;
 
 	public Chest3(Handler handler, float x, float y) {
 		super(handler, x, y, Tile.TILEHEIGHT, Tile.TILEWIDTH);
@@ -31,6 +47,22 @@ public class Chest3 extends StaticEntity{
 		int iry= (int)(bounds.y-handler.getGameCamera().getyOffset()+y+height/2);
 		ir.y=iry;
 		ir.x=irx;
+		
+		try {
+            audioFile = new File("res/music/key.wav");
+            audioStream = AudioSystem.getAudioInputStream(audioFile);
+            format = audioStream.getFormat();
+            info = new DataLine.Info(Clip.class, format);
+            audioClip = (Clip) AudioSystem.getLine(info);
+            audioClip.open(audioStream);
+
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
 	}
 
 	@Override
@@ -89,6 +121,7 @@ public class Chest3 extends StaticEntity{
 			giveItem(handler.getWorld().getEntityManager().getPlayer());
 			g.drawImage(Images.EP,(int) x+width,(int) y+10,32,32,null);
 			alreadyOpened = true;
+			audioClip.start();
 		} 
 	}
 
