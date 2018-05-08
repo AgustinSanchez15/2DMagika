@@ -17,8 +17,9 @@ public class Chest extends StaticEntity{
 	public Boolean EP = false;
 	public Boolean isOpen = false;
 	public Boolean justPressed = false;
-	private int stickCount = 0;														//Edit: Here is the stickCount initiation 
-
+	private int stickcount = 0;	//Edit: Here is the stickCount initiation 
+	private int bonecount = 0;
+	public int itemcount = bonecount + stickcount;
 	public Chest(Handler handler, float x, float y) {
 		super(handler, x, y, Tile.TILEHEIGHT, Tile.TILEWIDTH);
 		health=10000000;
@@ -46,20 +47,20 @@ public class Chest extends StaticEntity{
 			EP=false;
 		}
 		giveItem("Stick",3,handler.getWorld().getEntityManager().getPlayer());
+		giveItem("Bone",3,handler.getWorld().getEntityManager().getPlayer());
 
 	}
 	private void giveItem(String itemname, int quantity_needed, Player p) {
-		int itemcount = 0;
-		while(itemcount<=quantity_needed) {
-			for(Item pitem : p.getInventory().getInventoryItems()) {		//when stickCount has 3 sticks already, also when the player has two or 
-				if(pitem.getName().equals(itemname)) {				//more stick, when they open it, it takes all the sticks away until the 
-																				//player has no more or stickCount has 3
-					pitem.setCount(pitem.getCount()-1);					//Lastly, the chest takes the sticks when the player opens it, not closing it.
-					itemcount++;	
+		Rectangle pr = p.getCollisionBounds(0,0);
+			for(Item pitem : p.getInventory().getInventoryItems()) {		
+				if(pitem.getName().equals(itemname)&&stickcount<quantity_needed && this.isBeinghurt() && EP && ir.contains(pr) && itemname.equals("Stick")) {
+					stickcount++;														
+					pitem.setCount(pitem.getCount()-1);					
+				}else if(pitem.getName().equals(itemname)&&bonecount<quantity_needed && this.isBeinghurt() && EP && ir.contains(pr) && itemname.equals("Bone")) {
+					bonecount++;														
+					pitem.setCount(pitem.getCount()-1);
 				}
-			}
-																		//Edit:Included a stickCount and the chest does not take more sticks
-
+																		
 		}
 	}
 

@@ -35,7 +35,7 @@ public class Inventory {
     public void tick() {
 
         for(Item i : inventoryItems){
-            if(i.getCount()==0){
+            if(i.getCount()<=0){
                 inventoryItems.remove(inventoryItems.indexOf(i));
                 return;
             }
