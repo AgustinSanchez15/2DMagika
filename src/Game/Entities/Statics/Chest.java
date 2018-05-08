@@ -77,7 +77,7 @@ public class Chest extends StaticEntity{
 	private void checkForPlayer(Graphics g, Player p) {
 		Rectangle pr = p.getCollisionBounds(0,0);
 
-		if(ir.contains(pr) && !EP){
+		if(ir.contains(pr) && !EP && !isOpen){
 			g.drawImage(Images.E,(int) x+width,(int) y+10,32,32,null);
 		}
 
@@ -90,9 +90,12 @@ public class Chest extends StaticEntity{
 					giveItem("Bone",3,handler.getWorld().getEntityManager().getPlayer());//Edit: method implemented here
 				}
 			} 
-			g.drawImage(Images.items[1],(int) x+width,(int) y+10,32,32,null);
+
 		} else {
 			justPressed = false;
+		}
+		if(ir.contains(pr) && isOpen) {
+			g.drawImage(Images.items[1],(int) x+width,(int) y+10,32,32,null);
 		}
 	}
 	@Override
