@@ -61,7 +61,8 @@ public class Game implements Runnable {
     private Clip audioClip;
 
     private BufferedImage loading;
-
+    private boolean song = true;
+    
     public Game(String title, int width, int height){
 
         this.width = width;
@@ -77,6 +78,7 @@ public class Game implements Runnable {
         }
 
     }
+    
 
     private void init(){
         display = new DisplayScreen(title, width, height);
@@ -106,7 +108,6 @@ public class Game implements Runnable {
             info = new DataLine.Info(Clip.class, format);
             audioClip = (Clip) AudioSystem.getLine(info);
             audioClip.open(audioStream);
-            audioClip.loop(Clip.LOOP_CONTINUOUSLY);
 
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
@@ -171,6 +172,11 @@ public class Game implements Runnable {
     private void tick(){
         //checks for key types and manages them
         keyManager.tick();
+        if(song) {
+        	audioClip.loop(Clip.LOOP_CONTINUOUSLY);
+        } else {
+        	audioClip.stop();
+        }
 
         //game states are the menus
         if(State.getState() != null)
@@ -228,5 +234,8 @@ public class Game implements Runnable {
 
     public int getHeight(){
         return height;
+    }
+    public void setSong(boolean song) {
+    	this.song = song;
     }
 }
