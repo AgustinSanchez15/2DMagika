@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 
 import Game.Entities.Creatures.Player;
 import Game.Entities.Statics.Chest3;
+import Game.Entities.Statics.Door3;
 import Game.Items.Item;
 import Main.Handler;
 import Resources.Images;
@@ -24,7 +25,9 @@ public class World3 extends BaseWorld{
 		this.handler = handler;
 		this.player=player;
 
-		entityManager.addEntity(new Chest3(handler, 1473, 50));
+		entityManager.addEntity(new Chest3(handler, 1475, 1270));
+		entityManager.addEntity(new Door3(handler, 1450, 0, null));
+		
 		bounds = new Rectangle(0, 0, width,height);
 	}
 
@@ -47,7 +50,7 @@ public class World3 extends BaseWorld{
 		for(Item pitem : handler.getWorld().entityManager.getPlayer().getInventory().getInventoryItems()) {
 			if(pitem.getName().equals("Border")) {	
 				if(count <= 1) {
-					g.drawImage(Images.items[4],(int)(handler.getWorld().entityManager.getPlayer().getX()-handler.getGameCamera().getxOffset())-570,(int)(handler.getWorld().entityManager.getPlayer().getY()-handler.getGameCamera().getyOffset())+200,600,300,null);
+					g.drawImage(Images.items[4],(int)(handler.getWorld().entityManager.getPlayer().getX()-handler.getGameCamera().getxOffset())-570,(int)(handler.getWorld().entityManager.getPlayer().getY()-handler.getGameCamera().getyOffset()),600,300,null);
 				} else {
 					pitem.setCount(pitem.getCount()-1);
 				}
