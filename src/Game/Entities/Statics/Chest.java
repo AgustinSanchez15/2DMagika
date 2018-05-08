@@ -45,29 +45,23 @@ public class Chest extends StaticEntity{
 		}else if(!handler.getKeyManager().attbut){
 			EP=false;
 		}
+		giveItem("Stick",3,handler.getWorld().getEntityManager().getPlayer());
 
 	}
 	private void giveItem(String itemname, int quantity_needed, Player p) {
-		int itemcount = quantity_needed;
-		if(itemcount<=0) {
+		int itemcount = 0;
+		if(itemcount>=quantity_needed) {
+			
 			return;
 		}
-		if(stickCount < 3) {												//Edit:Included a stickCount and the chest does not take more sticks
+																			//Edit:Included a stickCount and the chest does not take more sticks
 			for(Item pitem : p.getInventory().getInventoryItems()) {		//when stickCount has 3 sticks already, also when the player has two or 
-				if(pitem.getName().equals(itemname) && EP) {				//more stick, when they open it, it takes all the sticks away until the 
-					while(pitem.getCount() > 0) {							//player has no more or stickCount has 3
+				if(pitem.getName().equals(itemname) && EP && isBeinghurt()) {				//more stick, when they open it, it takes all the sticks away until the 
+																				//player has no more or stickCount has 3
 						pitem.setCount(pitem.getCount()-1);					//Lastly, the chest takes the sticks when the player opens it, not closing it.
-						itemcount--;
-						stickCount++;
-						if(stickCount >= 3) {
-							break;
-						}
-					}
-				}
+						itemcount++;	
 			}
 		}
-		//		g.drawImage(p.getInventory().inventoryItems.get(0).getTexture(), 25, 24, inventoryItems.get(0).getWidth(), inventoryItems.get(0).getHeight(), null);
-		//        g.drawString(String.valueOf(int itemcount, 25+33,25+35);
 	}
 
 	@Override
