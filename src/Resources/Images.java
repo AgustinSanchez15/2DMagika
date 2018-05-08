@@ -107,7 +107,7 @@ public class Images {
             loading = ImageIO.read(getClass().getResourceAsStream("/Sheets/loading.png"));
             spellGUI = ImageIO.read(getClass().getResourceAsStream("/Sheets/SpellGUI.png"));
             winScreen = ImageIO.read(getClass().getResourceAsStream("/Sheets/win screen.png"));
-            playAgainbtn[0] = ImageIO.read(getClass().getResourceAsStream("/Sheets/Play Again Button.png"));
+            playAgainbtn[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Play Again Button.png"));
 
             
             inventory = ImageIO.read(getClass().getResourceAsStream("/Sheets/guit.png"));
