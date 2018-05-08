@@ -54,7 +54,7 @@ public class Images {
     public static BufferedImage[] Boss_back;
     public static BufferedImage narrowVision;
     public static BufferedImage winScreen;
-    public static BufferedImage []playAgainbtn;
+    public static BufferedImage [] playAgainbtn;
 
     public Images() {
 
@@ -101,7 +101,7 @@ public class Images {
 
         chest = new BufferedImage[2];
 
-
+        playAgainbtn = new BufferedImage[1];
         try {
 
             loading = ImageIO.read(getClass().getResourceAsStream("/Sheets/loading.png"));
