@@ -51,6 +51,8 @@ public class Images {
     public static BufferedImage[] Boss_front;
     public static BufferedImage[] Boss_back;
     public static BufferedImage narrowVision;
+    public static BufferedImage winScreen;
+    public static BufferedImage []playAgainbtn;
 
     public Images() {
 
@@ -102,7 +104,10 @@ public class Images {
 
             loading = ImageIO.read(getClass().getResourceAsStream("/Sheets/loading.png"));
             spellGUI = ImageIO.read(getClass().getResourceAsStream("/Sheets/SpellGUI.png"));
+            winScreen = ImageIO.read(getClass().getResourceAsStream("/Sheets/win screen.png"));
+            playAgainbtn[0] = ImageIO.read(getClass().getResourceAsStream("/Sheets/Play Again Button.png"));
 
+            
             inventory = ImageIO.read(getClass().getResourceAsStream("/Sheets/guit.png"));
             title = ImageIO.read(getClass().getResourceAsStream("/Sheets/Title.png"));
             narrowVision = ImageIO.read(getClass().getResourceAsStream("/Sheets/narrowVision.png"));

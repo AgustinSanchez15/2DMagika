@@ -25,6 +25,9 @@ public class UIImageButton extends UIObject{
 
     @Override
     public void render(Graphics g) {
+    	if(images.length==1) {
+    		g.drawImage(images[0],(int)x,(int)y,width,heith,null);
+    	}else {
         if(active){
             if(images.length==3) {
                 g.drawImage(images[2], (int) x, (int) y, width, heith, null);
@@ -34,7 +37,7 @@ public class UIImageButton extends UIObject{
             g.drawImage(images[1],(int)x,(int)y,width,heith,null);
         }else{
             g.drawImage(images[0],(int)x,(int)y,width,heith,null);
-
+        }
         }
     }
 

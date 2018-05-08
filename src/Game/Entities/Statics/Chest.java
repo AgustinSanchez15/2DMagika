@@ -46,7 +46,7 @@ public class Chest extends StaticEntity{
 		}else if(!handler.getKeyManager().attbut){
 			EP=false;
 		}
-		giveItem("Stick",3,handler.getWorld().getEntityManager().getPlayer());
+		//giveItem("Stick",3,handler.getWorld().getEntityManager().getPlayer());
 		giveItem("Bone",3,handler.getWorld().getEntityManager().getPlayer());
 
 	}
@@ -83,13 +83,14 @@ public class Chest extends StaticEntity{
 
 		if(ir.contains(pr) && EP) {
 			if(!justPressed) {
-				isOpen = !isOpen;
+				isOpen = true;
 				justPressed = true;
 				if(isOpen) {
-					giveItem("Stick",3,handler.getWorld().getEntityManager().getPlayer());	//Edit: method implemented here
+					giveItem("Stick",3,handler.getWorld().getEntityManager().getPlayer());
+					giveItem("Bone",3,handler.getWorld().getEntityManager().getPlayer());//Edit: method implemented here
 				}
 			} 
-			g.drawImage(Images.EP,(int) x+width,(int) y+10,32,32,null);
+			g.drawImage(Images.items[1],(int) x+width,(int) y+10,32,32,null);
 		} else {
 			justPressed = false;
 		}
