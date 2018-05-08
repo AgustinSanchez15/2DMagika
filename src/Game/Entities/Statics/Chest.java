@@ -28,9 +28,10 @@ public class Chest extends StaticEntity{
 	public Boolean justPressed = false;
 	private int stickcount = 0;	
 	private int bonecount = 0;
-	
-	
-    
+	private boolean getStick = true;
+	private boolean getBone = true;
+
+
 	public Chest(Handler handler, float x, float y) {
 		super(handler, x, y, Tile.TILEHEIGHT, Tile.TILEWIDTH);
 		health=10000000;
@@ -42,8 +43,8 @@ public class Chest extends StaticEntity{
 		int iry= (int)(bounds.y-handler.getGameCamera().getyOffset()+y+height/2);
 		ir.y=iry;
 		ir.x=irx;
-		
-		
+
+
 	}
 
 	@Override
@@ -59,24 +60,43 @@ public class Chest extends StaticEntity{
 		}else if(!handler.getKeyManager().attbut){
 			EP=false;
 		}
-		giveItem("Stick",3,handler.getWorld().getEntityManager().getPlayer());
-		giveItem("Bone",3,handler.getWorld().getEntityManager().getPlayer());
-		
+		//giveItem("Stick",3,handler.getWorld().getEntityManager().getPlayer());
+		//giveItem("Bone",3,handler.getWorld().getEntityManager().getPlayer());
+
 		if(stickcount >= 3 && bonecount >= 3) {
 			handler.getGame().setDoorVisible(true);
 		}
 	}
 	private void giveItem(String itemname, int quantity_needed, Player p) {
-		Rectangle pr = p.getCollisionBounds(0,0);
-			for(Item pitem : p.getInventory().getInventoryItems()) {		
-				if(pitem.getName().equals(itemname)&&stickcount<quantity_needed && this.isBeinghurt() && EP && ir.contains(pr) && itemname.equals("Stick")) {
-					stickcount++;														
-					pitem.setCount(pitem.getCount()-1);					
-				}else if(pitem.getName().equals(itemname)&&bonecount<quantity_needed && this.isBeinghurt() && EP && ir.contains(pr) && itemname.equals("Bone")) {
-					bonecount++;														
-					pitem.setCount(pitem.getCount()-1);
+		//Rectangle pr = p.getCollisionBounds(0,0);
+		for(Item pitem : p.getInventory().getInventoryItems()) {		
+			if(itemname.equals("Stick") && getStick) {
+				if(pitem.getName().equals(itemname)) {
+					while(pitem.getCount() > 0) {
+						stickcount++;														
+						pitem.setCount(pitem.getCount()-1);
+						if(stickcount >= quantity_needed) {
+							getStick = false;
+							break;
+						}
+					}
 				}
-																		
+
+			}else if(itemname.equals("Bone") && getBone) {
+				if(itemname.equals("Bone") && getBone) {
+					if(pitem.getName().equals(itemname)) {
+						while(pitem.getCount() > 0) {
+							bonecount++;														
+							pitem.setCount(pitem.getCount()-1);
+							if(bonecount >= quantity_needed) {
+								getBone = false;
+								break;
+							}
+						}
+					}
+				}
+
+			}
 		}
 	}
 
@@ -101,14 +121,14 @@ public class Chest extends StaticEntity{
 		}
 
 		if(ir.contains(pr) && EP) {
-			
-				isOpen = true;
-			
-				if(isOpen) {
-					giveItem("Stick",3,handler.getWorld().getEntityManager().getPlayer());
-					giveItem("Bone",3,handler.getWorld().getEntityManager().getPlayer());//Edit: method implemented here
-				}
-			
+
+			isOpen = true;
+
+			if(isOpen) {
+				giveItem("Stick",3,handler.getWorld().getEntityManager().getPlayer());
+				giveItem("Bone",3,handler.getWorld().getEntityManager().getPlayer());//Edit: method implemented here
+			}
+
 
 		} 
 		if(ir.contains(pr) && isOpen) {
@@ -117,7 +137,7 @@ public class Chest extends StaticEntity{
 			g.drawImage(Images.items[2],(int) x+width+width/2,(int) y+10,32,32,null);
 			g.drawString(String.valueOf(bonecount) + "/" +String.valueOf(3), (int) x+width+width/2,(int)y+10);
 		}
-		
+
 	}
 	@Override
 	public void die() {
