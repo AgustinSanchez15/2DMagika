@@ -1,9 +1,18 @@
 package Game.Entities.Statics;
 
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import Game.Entities.Creatures.Player;
 import Game.Items.Item;
@@ -19,6 +28,13 @@ public class Chest extends StaticEntity{
 	public Boolean justPressed = false;
 	private int stickcount = 0;	
 	private int bonecount = 0;
+	
+	private File audioFile;
+    private AudioInputStream audioStream;
+    private AudioFormat format;
+    private DataLine.Info info;
+    private Clip audioClip;
+    
 	public Chest(Handler handler, float x, float y) {
 		super(handler, x, y, Tile.TILEHEIGHT, Tile.TILEWIDTH);
 		health=10000000;
@@ -30,6 +46,22 @@ public class Chest extends StaticEntity{
 		int iry= (int)(bounds.y-handler.getGameCamera().getyOffset()+y+height/2);
 		ir.y=iry;
 		ir.x=irx;
+		
+		try {
+            audioFile = new File("res/music/key.wav");
+            audioStream = AudioSystem.getAudioInputStream(audioFile);
+            format = audioStream.getFormat();
+            info = new DataLine.Info(Clip.class, format);
+            audioClip = (Clip) AudioSystem.getLine(info);
+            audioClip.open(audioStream);
+
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
 	}
 
 	@Override
@@ -47,7 +79,11 @@ public class Chest extends StaticEntity{
 		}
 		//giveItem("Stick",3,handler.getWorld().getEntityManager().getPlayer());
 		giveItem("Bone",3,handler.getWorld().getEntityManager().getPlayer());
-
+		
+		if(stickcount >= 3 && bonecount >= 3) {
+			handler.getGame().setDoorVisible(true);
+			audioClip.start();
+		}
 	}
 	private void giveItem(String itemname, int quantity_needed, Player p) {
 		Rectangle pr = p.getCollisionBounds(0,0);

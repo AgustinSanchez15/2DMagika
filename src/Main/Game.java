@@ -62,6 +62,7 @@ public class Game implements Runnable {
 
     private BufferedImage loading;
     private boolean song = true;
+    private boolean doorVisible = false;
     
     public Game(String title, int width, int height){
 
@@ -237,5 +238,11 @@ public class Game implements Runnable {
     }
     public void setSong(boolean song) {
     	this.song = song;
+    }
+    public void setDoorVisible(boolean doorVisible) {
+    	this.doorVisible = doorVisible;
+    }
+    public boolean getDoorVisible() {
+    	return doorVisible;
     }
 }
