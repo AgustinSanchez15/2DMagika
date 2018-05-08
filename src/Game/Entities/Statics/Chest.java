@@ -17,7 +17,7 @@ public class Chest extends StaticEntity{
 	public Boolean EP = false;
 	public Boolean isOpen = false;
 	public Boolean justPressed = false;
-	private int stickcount = 0;	//Edit: Here is the stickCount initiation 
+	private int stickcount = 0;	
 	private int bonecount = 0;
 	public int itemcount = bonecount + stickcount;
 	public Chest(Handler handler, float x, float y) {

@@ -14,7 +14,7 @@ import java.awt.*;
 
 
 public class Door extends StaticEntity {
-
+	public boolean accomplished = false;
     private Rectangle ir = new Rectangle();
     public Boolean EP = false;
 
@@ -55,8 +55,9 @@ public class Door extends StaticEntity {
 
     @Override
     public void render(Graphics g) {
+    	if(accomplished) {
         g.drawImage(Images.door,(int)(x-handler.getGameCamera().getxOffset()),(int)(y-handler.getGameCamera().getyOffset()),width,height,null);
-
+    	}
         g.setColor(Color.black);
         checkForPlayer(g, handler.getWorld().getEntityManager().getPlayer());
     }
@@ -64,7 +65,7 @@ public class Door extends StaticEntity {
     private void checkForPlayer(Graphics g, Player p) {
         Rectangle pr = p.getCollisionBounds(0,0);
 
-        if(ir.contains(pr) && !EP){
+        if(ir.contains(pr) && !EP && accomplished){
             g.drawImage(Images.E,(int) x+width,(int) y+10,32,32,null);
         }else if(ir.contains(pr) && EP){
             g.drawImage(Images.EP,(int) x+width,(int) y+10,32,32,null);
@@ -79,5 +80,8 @@ public class Door extends StaticEntity {
     @Override
     public void die() {
 
+    }
+    public void setAccomplished(boolean accomplished) {
+        this.accomplished = accomplished;
     }
 }
