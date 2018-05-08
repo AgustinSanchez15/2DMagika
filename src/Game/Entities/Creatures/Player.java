@@ -251,7 +251,7 @@ public class Player extends CreatureBase {
     @Override
     public void die(){
         System.out.println("You lose");
-        State.setState(handler.getGame().winState);
+        State.setState(handler.getGame().loseState);
     }
 
     private void getInput(){

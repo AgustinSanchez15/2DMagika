@@ -55,6 +55,8 @@ public class Images {
     public static BufferedImage narrowVision;
     public static BufferedImage winScreen;
     public static BufferedImage [] playAgainbtn;
+    public static BufferedImage loseScreen;
+    public static BufferedImage [] tryAgainbtn;
 
     public Images() {
 
@@ -102,6 +104,7 @@ public class Images {
         chest = new BufferedImage[2];
 
         playAgainbtn = new BufferedImage[1];
+        tryAgainbtn = new BufferedImage[1];
         try {
 
             loading = ImageIO.read(getClass().getResourceAsStream("/Sheets/loading.png"));
@@ -109,6 +112,8 @@ public class Images {
             winScreen = ImageIO.read(getClass().getResourceAsStream("/Sheets/win screen.png"));
             playAgainbtn[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Play Again Button.png"));
 
+            loseScreen = ImageIO.read(getClass().getResourceAsStream("/Sheets/diedScreen.jpg"));
+            tryAgainbtn[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/tryagain.png"));
             
             inventory = ImageIO.read(getClass().getResourceAsStream("/Sheets/guit.png"));
             title = ImageIO.read(getClass().getResourceAsStream("/Sheets/Title.png"));
