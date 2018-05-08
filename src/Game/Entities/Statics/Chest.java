@@ -97,6 +97,8 @@ public class Chest extends StaticEntity{
 		if(ir.contains(pr) && isOpen) {
 			g.drawImage(Images.items[1],(int) x+width,(int) y+10,32,32,null);
 			g.drawString(String.valueOf(stickcount) + "/" +String.valueOf(3), (int) x+width,(int)y+10);
+			g.drawImage(Images.items[2],(int) x+width+width/2,(int) y+10,32,32,null);
+			g.drawString(String.valueOf(stickcount) + "/" +String.valueOf(3), (int) x+width+width/2,(int)y+10);
 		}
 	}
 	@Override
