@@ -19,7 +19,6 @@ public class Chest extends StaticEntity{
 	public Boolean justPressed = false;
 	private int stickcount = 0;	
 	private int bonecount = 0;
-	public int itemcount = bonecount + stickcount;
 	public Chest(Handler handler, float x, float y) {
 		super(handler, x, y, Tile.TILEHEIGHT, Tile.TILEWIDTH);
 		health=10000000;
@@ -72,6 +71,9 @@ public class Chest extends StaticEntity{
 			g.drawImage(Images.chest[1],(int)(x-handler.getGameCamera().getxOffset()),(int)(y-handler.getGameCamera().getyOffset()),width,height,null);
 		}
 		checkForPlayer(g, handler.getWorld().getEntityManager().getPlayer());
+		if(stickcount>=3 && bonecount>=3) {
+			isOpen = false;
+		}
 
 	}
 	private void checkForPlayer(Graphics g, Player p) {
@@ -82,24 +84,23 @@ public class Chest extends StaticEntity{
 		}
 
 		if(ir.contains(pr) && EP) {
-			if(!justPressed) {
+			
 				isOpen = true;
-				justPressed = true;
+			
 				if(isOpen) {
 					giveItem("Stick",3,handler.getWorld().getEntityManager().getPlayer());
 					giveItem("Bone",3,handler.getWorld().getEntityManager().getPlayer());//Edit: method implemented here
 				}
-			} 
+			
 
-		} else {
-			justPressed = false;
-		}
+		} 
 		if(ir.contains(pr) && isOpen) {
 			g.drawImage(Images.items[1],(int) x+width,(int) y+10,32,32,null);
 			g.drawString(String.valueOf(stickcount) + "/" +String.valueOf(3), (int) x+width,(int)y+10);
 			g.drawImage(Images.items[2],(int) x+width+width/2,(int) y+10,32,32,null);
 			g.drawString(String.valueOf(stickcount) + "/" +String.valueOf(3), (int) x+width+width/2,(int)y+10);
 		}
+		
 	}
 	@Override
 	public void die() {
