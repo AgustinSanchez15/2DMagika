@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import Game.Entities.Creatures.Player;
 import Game.Entities.Statics.Chest3;
 import Game.Entities.Statics.Door3;
+import Game.GameStates.State;
 import Game.Items.Item;
 import Main.Handler;
 import Resources.Images;
@@ -63,6 +64,9 @@ public class World3 extends BaseWorld{
 					justPressed = false;
 				}
 			}
+		}
+		if(handler.getKeyManager().getnbutt()) {
+			State.setState(handler.getGame().winState);
 		}
 	}
 }
