@@ -51,7 +51,6 @@ public class Images {
     public static BufferedImage[] Boss_front;
     public static BufferedImage[] Boss_back;
     public static BufferedImage narrowVision;
-    public static BufferedImage chestItems3;
 
     public Images() {
 
@@ -79,7 +78,7 @@ public class Images {
 
         butstart = new BufferedImage[3];
         particleSmoke = new BufferedImage[3];
-        items = new BufferedImage[4];
+        items = new BufferedImage[5];
         numbers = new BufferedImage[21];
         Resume = new BufferedImage[2];
         BTitle = new BufferedImage[2];
@@ -117,7 +116,6 @@ public class Images {
             BTitle[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/BTitleP.png"));
             Options[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Options.png"));
             Options[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/OptionsP.png"));
-            chestItems3 = ImageIO.read(getClass().getResourceAsStream("/Sheets/border.png"));
 
             //icon
             icon = new ImageIcon(runesheet.crop(Rwidth*1,Rheight*0,Rwidth,Rheight));
@@ -178,6 +176,7 @@ public class Images {
             items[1]= ImageIO.read(getClass().getResourceAsStream("/Sheets/stick.png"));//stick
             items[2]= ImageIO.read(getClass().getResourceAsStream("/Sheets/bone.png"));//bone
             items[3] = ImageIO.read(getClass().getResourceAsStream("/Sheets/key.png"));//key
+            items[4] = ImageIO.read(getClass().getResourceAsStream("/Sheets/border.png"));//border
 
             numbers[1]= numsheet.crop(17,15,17,22);
             numbers[2]= numsheet.crop(64,16,14,19);

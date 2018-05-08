@@ -27,7 +27,7 @@ public class Chest3 extends StaticEntity{
 		bounds.height = Tile.TILEHEIGHT;
 		ir.width = bounds.width;
 		ir.height = bounds.height;
-		int irx=(int)(bounds.x-handler.getGameCamera().getxOffset()+x);
+		int irx= (int)(bounds.x-handler.getGameCamera().getxOffset()+x);
 		int iry= (int)(bounds.y-handler.getGameCamera().getyOffset()+y+height/2);
 		ir.y=iry;
 		ir.x=irx;
@@ -62,10 +62,17 @@ public class Chest3 extends StaticEntity{
 			g.drawImage(Images.chest[0],(int)(x-handler.getGameCamera().getxOffset()),(int)(y-handler.getGameCamera().getyOffset()),width,height,null);
 		}else if(alreadyOpened) {
 			g.drawImage(Images.chest[1],(int)(x-handler.getGameCamera().getxOffset()),(int)(y-handler.getGameCamera().getyOffset()),width,height,null);
-		}
-		if(count == 1) {
-			g.drawImage(Images.chestItems3,(int)(x-handler.getGameCamera().getxOffset())-570,(int)(y-handler.getGameCamera().getyOffset())+200,600,300,null);
-			//handler.getGame().gameState.setState(handler.getGame().pauseState);
+			if(count == 0) {
+				handler.getWorld().getEntityManager().getPlayer().getInventory().addItem(Item.border);
+			}
+			if(EP) {
+				if(!justPressed) {
+					count++;
+					justPressed = true;
+				}
+			} else {
+				justPressed = false;
+			}
 		}
 
 		checkForPlayer(g, handler.getWorld().getEntityManager().getPlayer());
@@ -83,14 +90,6 @@ public class Chest3 extends StaticEntity{
 			g.drawImage(Images.EP,(int) x+width,(int) y+10,32,32,null);
 			alreadyOpened = true;
 		} 
-		if(EP) {
-			if(!justPressed) {
-				count++;
-				justPressed = true;
-			}
-		} else {
-			justPressed = false;
-		}
 	}
 
 	@Override
