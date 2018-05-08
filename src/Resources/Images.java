@@ -31,6 +31,8 @@ public class Images {
     public static BufferedImage inventory;
     public static BufferedImage title;
     public static BufferedImage door;
+    public static BufferedImage doorClosed;
+    public static BufferedImage doorOpened;
     public static BufferedImage E;
     public static BufferedImage EP;
     public static BufferedImage Pause;
@@ -112,6 +114,8 @@ public class Images {
             title = ImageIO.read(getClass().getResourceAsStream("/Sheets/Title.png"));
             narrowVision = ImageIO.read(getClass().getResourceAsStream("/Sheets/narrowVision.png"));
             door = ImageIO.read(getClass().getResourceAsStream("/Sheets/Door.png"));
+            doorClosed = ImageIO.read(getClass().getResourceAsStream("/Sheets/DoorClosed.png"));
+            doorOpened = ImageIO.read(getClass().getResourceAsStream("/Sheets/DoorOpened.png"));
             E = ImageIO.read(getClass().getResourceAsStream("/Buttons/E.png"));
             EP = ImageIO.read(getClass().getResourceAsStream("/Buttons/EP.png"));
             Pause = ImageIO.read(getClass().getResourceAsStream("/Buttons/Pause.png"));

@@ -128,6 +128,8 @@ public class Inventory {
             g.drawString(String.valueOf(inventoryItems.get(4).getCount()), 269+33,24+35);
             g.drawImage(inventoryItems.get(5).getTexture(), 269+61, 24, inventoryItems.get(5).getWidth(), inventoryItems.get(5).getHeight(), null);
             g.drawString(String.valueOf(inventoryItems.get(4).getCount()), 269+33+61,24+35);
+            g.drawImage(inventoryItems.get(6).getTexture(), 86, 85, inventoryItems.get(6).getWidth(), inventoryItems.get(6).getHeight(), null);
+            g.drawString(String.valueOf(inventoryItems.get(6).getCount()), 86+33,85+35);
         }
     }
 
