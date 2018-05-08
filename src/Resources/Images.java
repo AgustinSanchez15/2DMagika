@@ -51,6 +51,7 @@ public class Images {
     public static BufferedImage[] Boss_front;
     public static BufferedImage[] Boss_back;
     public static BufferedImage narrowVision;
+    public static BufferedImage chestItems3;
 
     public Images() {
 
@@ -116,6 +117,7 @@ public class Images {
             BTitle[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/BTitleP.png"));
             Options[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Options.png"));
             Options[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/OptionsP.png"));
+            chestItems3 = ImageIO.read(getClass().getResourceAsStream("/Sheets/border.png"));
 
             //icon
             icon = new ImageIcon(runesheet.crop(Rwidth*1,Rheight*0,Rwidth,Rheight));

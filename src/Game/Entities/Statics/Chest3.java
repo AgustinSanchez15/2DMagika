@@ -14,8 +14,10 @@ public class Chest3 extends StaticEntity{
 
 	private Rectangle ir = new Rectangle();
 	public Boolean EP = false;
-	public Boolean isOpen = false;
+	public Boolean alreadyOpened = false;
+	public Boolean showedMessage = false;
 	public Boolean justPressed = false;
+	public int count = 0;
 	private int keyCount = 0;	
 
 	public Chest3(Handler handler, float x, float y) {
@@ -56,34 +58,41 @@ public class Chest3 extends StaticEntity{
 
 	@Override
 	public void render(Graphics g) {
-		if(!isOpen) {
+		if(!alreadyOpened) {
 			g.drawImage(Images.chest[0],(int)(x-handler.getGameCamera().getxOffset()),(int)(y-handler.getGameCamera().getyOffset()),width,height,null);
-		}else if(isOpen) {
+		}else if(alreadyOpened) {
 			g.drawImage(Images.chest[1],(int)(x-handler.getGameCamera().getxOffset()),(int)(y-handler.getGameCamera().getyOffset()),width,height,null);
 		}
+		if(count == 1) {
+			g.drawImage(Images.chestItems3,(int)(x-handler.getGameCamera().getxOffset())-570,(int)(y-handler.getGameCamera().getyOffset())+200,600,300,null);
+			//handler.getGame().gameState.setState(handler.getGame().pauseState);
+		}
+
 		checkForPlayer(g, handler.getWorld().getEntityManager().getPlayer());
 
 	}
 	private void checkForPlayer(Graphics g, Player p) {
 		Rectangle pr = p.getCollisionBounds(0,0);
 
-		if(ir.contains(pr) && !EP){
+		if(ir.contains(pr) && !EP && !alreadyOpened){
 			g.drawImage(Images.E,(int) x+width,(int) y+10,32,32,null);
 		}
 
-		if(ir.contains(pr) && EP) {
-			if(!justPressed) {
-				isOpen = !isOpen;
-				justPressed = true;
-				if(isOpen) {
-					giveItem(handler.getWorld().getEntityManager().getPlayer());
-				}
-			} 
+		if(ir.contains(pr) && EP && !alreadyOpened) {
+			giveItem(handler.getWorld().getEntityManager().getPlayer());
 			g.drawImage(Images.EP,(int) x+width,(int) y+10,32,32,null);
+			alreadyOpened = true;
+		} 
+		if(EP) {
+			if(!justPressed) {
+				count++;
+				justPressed = true;
+			}
 		} else {
 			justPressed = false;
 		}
 	}
+
 	@Override
 	public void die() {
 
