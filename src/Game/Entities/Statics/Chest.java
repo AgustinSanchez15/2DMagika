@@ -3,17 +3,6 @@ package Game.Entities.Statics;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.io.File;
-import java.io.IOException;
-
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-
 import Game.Entities.Creatures.Player;
 import Game.Items.Item;
 import Game.Tiles.Tile;
@@ -60,8 +49,6 @@ public class Chest extends StaticEntity{
 		}else if(!handler.getKeyManager().attbut){
 			EP=false;
 		}
-		//giveItem("Stick",3,handler.getWorld().getEntityManager().getPlayer());
-		//giveItem("Bone",3,handler.getWorld().getEntityManager().getPlayer());
 
 		if(stickcount >= 3 && bonecount >= 3) {
 			handler.getGame().setDoorVisible(true);
@@ -95,7 +82,6 @@ public class Chest extends StaticEntity{
 						}
 					}
 				}
-
 			}
 		}
 	}
@@ -132,10 +118,10 @@ public class Chest extends StaticEntity{
 
 		} 
 		if(ir.contains(pr) && isOpen) {
-			g.drawImage(Images.items[1],(int) x+width,(int) y+10,32,32,null);
-			g.drawString(String.valueOf(stickcount) + "/" +String.valueOf(3), (int) x+width,(int)y+10);
-			g.drawImage(Images.items[2],(int) x+width+width/2,(int) y+10,32,32,null);
-			g.drawString(String.valueOf(bonecount) + "/" +String.valueOf(3), (int) x+width+width/2,(int)y+10);
+			g.drawImage(Images.items[1],(int) x+width,(int) y-30,32,32,null);
+			g.drawString(String.valueOf(stickcount) + "/" +String.valueOf(3), (int) x+width,(int)y-30);
+			g.drawImage(Images.items[2],(int) x+width+width/2,(int) y-30,32,32,null);
+			g.drawString(String.valueOf(bonecount) + "/" +String.valueOf(3), (int) x+width+width/2,(int)y-30);
 		}
 
 	}

@@ -28,7 +28,6 @@ public class Chest3 extends StaticEntity{
 	public Boolean showedMessage = false;
 	public Boolean justPressed = false;
 	public int count = 0;
-	private int keyCount = 0;
 	//Res.music
     private File audioFile;
     private AudioInputStream audioStream;
@@ -79,14 +78,6 @@ public class Chest3 extends StaticEntity{
 			EP=false;
 		}
 	}
-	private void giveItem(Player p) {
-		if(keyCount<=0) {
-			p.getInventory().addItem(Item.keyItem);		
-			keyCount++;
-		}
-		//		g.drawImage(p.getInventory().inventoryItems.get(0).getTexture(), 25, 24, inventoryItems.get(0).getWidth(), inventoryItems.get(0).getHeight(), null);
-		//        g.drawString(String.valueOf(int itemcount, 25+33,25+35);
-	}
 
 	@Override
 	public void render(Graphics g) {
@@ -118,7 +109,7 @@ public class Chest3 extends StaticEntity{
 		}
 
 		if(ir.contains(pr) && EP && !alreadyOpened) {
-			giveItem(handler.getWorld().getEntityManager().getPlayer());
+			handler.getWorld().getEntityManager().getPlayer().getInventory().addItem(Item.keyItem);
 			g.drawImage(Images.EP,(int) x+width,(int) y+10,32,32,null);
 			alreadyOpened = true;
 			audioClip.start();
