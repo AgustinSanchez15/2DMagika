@@ -38,14 +38,14 @@ public class LoseState extends State {
         uiManager = new UIManager(handler);
         handler.getMouseManager().setUimanager(uiManager);
 
-
+/*
         uiManager.addObjects(new UIImageButton(handler.getWidth()/2-64, handler.getHeight()/2+64, 128, 64, Images.tryAgainbtn, new ClickListlener() {
 			@Override
 			public void onClick() {
 				handler.getMouseManager().setUimanager(null);
 				State.setState(handler.getGame().menuState);
 			}
-        }));
+        }));*/
         try {
 			audioFile = new File("res/music/game_over.wav");
 			audioStream = AudioSystem.getAudioInputStream(audioFile);
