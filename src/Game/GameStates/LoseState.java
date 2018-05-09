@@ -26,27 +26,27 @@ import UI.UIManager;
  */
 public class LoseState extends State {
 
-	private UIManager uiManager;
+    private UIManager uiManager;
 	private File audioFile;
 	private AudioInputStream audioStream;
 	private AudioFormat format;
 	private DataLine.Info info;
 	private Clip audioClip;
 
-	public LoseState(Handler handler) {
-		super(handler);
-		uiManager = new UIManager(handler);
-		handler.getMouseManager().setUimanager(uiManager);
+    public LoseState(Handler handler) {
+        super(handler);
+        uiManager = new UIManager(handler);
+        handler.getMouseManager().setUimanager(uiManager);
 
 
-		/*uiManager.addObjects(new UIImageButton(handler.getWidth()/2-64, handler.getHeight()/2+64, 128, 64, Images.tryAgainbtn, new ClickListlener() {
+        uiManager.addObjects(new UIImageButton(handler.getWidth()/2-64, handler.getHeight()/2+64, 128, 64, Images.tryAgainbtn, new ClickListlener() {
 			@Override
 			public void onClick() {
 				handler.getMouseManager().setUimanager(null);
 				State.setState(handler.getGame().menuState);
 			}
-		}));*/
-		try {
+        }));
+        try {
 			audioFile = new File("res/music/game_over.wav");
 			audioStream = AudioSystem.getAudioInputStream(audioFile);
 			format = audioStream.getFormat();
@@ -61,28 +61,25 @@ public class LoseState extends State {
 		} catch (LineUnavailableException e) {
 			e.printStackTrace();
 		}
-	}
+    }
 
-	@Override
-	public void tick() {
-		handler.getMouseManager().setUimanager(uiManager);
-		uiManager.tick();
-		audioClip.start();
+    @Override
+    public void tick() {
+        handler.getMouseManager().setUimanager(uiManager);
+        uiManager.tick();
+        audioClip.start();
 		handler.getGame().setSong(false);
 
-		// Temporarily just go directly to the GameState, skip the menu state!
-		//handler.getMouseManager().setUimanager(null);
-		//State.setState(handler.getGame().gameState);
-	}
+    }
 
-	@Override
-	public void render(Graphics g) {
-		g.setColor(Color.darkGray);
-		g.fillRect(0,0,handler.getWidth(),handler.getHeight());
-		g.drawImage(Images.loseScreen,0,0,800,600,null);
-		uiManager.Render(g);
+    @Override
+    public void render(Graphics g) {
+        g.setColor(Color.darkGray);
+        g.fillRect(0,0,handler.getWidth(),handler.getHeight());
+        g.drawImage(Images.loseScreen,0,0,800,600,null);
+        uiManager.Render(g);
 
-	}
+    }
 
 
 }

@@ -43,7 +43,7 @@ public class Boss extends CreatureBase  {
 
 		x1 = true; x2 = true;
 		case1 = true; case2 = true; case3 = true; case4 = true;
-		
+
 		randint = new Random();
 		direction = randint.nextInt(4) + 1;
 
@@ -130,32 +130,49 @@ public class Boss extends CreatureBase  {
 					checkAttacks();
 					return;
 				}
+				else if(e.getCollisionBounds(0, 0).intersects(ar) && !e.equals(handler.getWorld().getEntityManager().getPlayer())) {
+					switch (direction) {
+					case 1://up
+						yMove = -speed;
+						break;
+					case 2://down
+						yMove = speed;
+						break;
+					case 3://left
+						xMove = -speed;
+						break;
+					case 4://right
+						xMove = speed;
+						break;}
+				}
 			}
 
 
-			if (x >= handler.getWorld().getEntityManager().getPlayer().getX() - 8 && x <= handler.getWorld().getEntityManager().getPlayer().getX() + 8) {//nada
+			
 
-				xMove = 0;
-			} else if (x < handler.getWorld().getEntityManager().getPlayer().getX()) {//move right
+            if (x >= handler.getWorld().getEntityManager().getPlayer().getX() - 8 && x <= handler.getWorld().getEntityManager().getPlayer().getX() + 8) {//nada
 
-				xMove = speed;
+                xMove = 0;
+            } else if (x < handler.getWorld().getEntityManager().getPlayer().getX()) {//move right
 
-			} else if (x > handler.getWorld().getEntityManager().getPlayer().getX()) {//move left
+                xMove = speed;
 
-				xMove = -speed;
-			}
+            } else if (x > handler.getWorld().getEntityManager().getPlayer().getX()) {//move left
 
-			if (y >= handler.getWorld().getEntityManager().getPlayer().getY() - 8 && y <= handler.getWorld().getEntityManager().getPlayer().getY() + 8) {//nada
-				yMove = 0;
-			} else if (y < handler.getWorld().getEntityManager().getPlayer().getY()) {//move down
-				yMove = speed;
+                xMove = -speed;
+            }
 
-			} else if (y > handler.getWorld().getEntityManager().getPlayer().getY()) {//move up
-				yMove = -speed;
-			}
+            if (y >= handler.getWorld().getEntityManager().getPlayer().getY() - 8 && y <= handler.getWorld().getEntityManager().getPlayer().getY() + 8) {//nada
+                yMove = 0;
+            } else if (y < handler.getWorld().getEntityManager().getPlayer().getY()) {//move down
+                yMove = speed;
+
+            } else if (y > handler.getWorld().getEntityManager().getPlayer().getY()) {//move up
+                yMove = -speed;
+            }
 
 
-		} else {
+        } else {
 
 
 			switch (direction) {
@@ -185,7 +202,7 @@ public class Boss extends CreatureBase  {
 			g.drawString("BossHealth: " + getHealth(),(int) (x-handler.getGameCamera().getxOffset()),(int) (y-handler.getGameCamera().getyOffset()-20));
 		}
 	}
-/*
+	/*
 	@Override
 	protected boolean collisionWithTile(int x, int y){
 		if(handler.getWorld().getTile(x, y).isSolid()) {
@@ -200,7 +217,7 @@ public class Boss extends CreatureBase  {
 		}
 		return handler.getWorld().getTile(x, y).isSolid();
 	}
-	
+
 	public void findPath(){
 		if(handler.getWorld().getEntityManager().getPlayer().getX() < x && x1) {
 			if(handler.getWorld().getEntityManager().getPlayer().getY() < y) {
@@ -210,7 +227,7 @@ public class Boss extends CreatureBase  {
 				case2 = false;
 				case3 = false;
 				case4 = false;
-				
+
 			} else if(handler.getWorld().getEntityManager().getPlayer().getY() > y) {
 				x1 = false;
 				x2 = false;
@@ -252,14 +269,14 @@ public class Boss extends CreatureBase  {
 			xMove = speed;
 		}
 	}
-	
+
 	@Override
 	public void move(){
         if(!checkEntityCollisions(xMove, 0f))
             moveX();
         else {
         	//TODO
-        	
+
         }
         if(!checkEntityCollisions(0f, yMove))
             moveY();
@@ -267,7 +284,7 @@ public class Boss extends CreatureBase  {
         	//TODO
         }
     }
-	
+
 	@Override
 	public void moveX(){
         if(xMove > 0){//Moving right
@@ -317,7 +334,7 @@ public class Boss extends CreatureBase  {
 
         }
     }
-	*/
+	 */
 	@Override
 	public void die() {
 		handler.getGame().setDoorVisible(true);
