@@ -55,7 +55,7 @@ public class World3 extends BaseWorld{
 		for(Item pitem : handler.getWorld().entityManager.getPlayer().getInventory().getInventoryItems()) {
 			if(pitem.getName().equals("Border")) {	
 				if(count <= 1) {
-					g.drawImage(Images.items[4],(int)(handler.getWorld().entityManager.getPlayer().getX()-handler.getGameCamera().getxOffset())-570,(int)(handler.getWorld().entityManager.getPlayer().getY()-handler.getGameCamera().getyOffset()),32,28,null);
+					g.drawImage(Images.items[4],(int)(handler.getWorld().entityManager.getPlayer().getX()-handler.getGameCamera().getxOffset())-570,(int)(handler.getWorld().entityManager.getPlayer().getY()-handler.getGameCamera().getyOffset()),600,300,null);
 				} else {
 					pitem.setCount(pitem.getCount()-1);
 				}
