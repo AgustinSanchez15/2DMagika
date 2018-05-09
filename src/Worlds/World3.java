@@ -48,7 +48,7 @@ public class World3 extends BaseWorld{
 
 	public void render(Graphics g) {
 		super.render(g);
-		//g.drawImage(Images.narrowVision,(int)(handler.getWorld().entityManager.getPlayer().getX()-handler.getGameCamera().getxOffset()-725),(int)(handler.getWorld().entityManager.getPlayer().getY()-handler.getGameCamera().getyOffset()-getHeight()+(bounds.height/3)-680),1500,1500,null);
+		g.drawImage(Images.narrowVision,(int)(handler.getWorld().entityManager.getPlayer().getX()-handler.getGameCamera().getxOffset()-725),(int)(handler.getWorld().entityManager.getPlayer().getY()-handler.getGameCamera().getyOffset()-getHeight()+(bounds.height/3)-680),1500,1500,null);
 		handler.getWorld().entityManager.getPlayer().getInventory().render(g);
 		handler.getWorld().entityManager.getPlayer().getSpellGUI().render(g);
 
