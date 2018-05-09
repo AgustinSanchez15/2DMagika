@@ -57,6 +57,7 @@ public class Images {
     public static BufferedImage [] playAgainbtn;
     public static BufferedImage loseScreen;
     public static BufferedImage [] tryAgainbtn;
+    public static BufferedImage borderEmpty;
 
     public Images() {
 
@@ -111,7 +112,8 @@ public class Images {
             spellGUI = ImageIO.read(getClass().getResourceAsStream("/Sheets/SpellGUI.png"));
             winScreen = ImageIO.read(getClass().getResourceAsStream("/Sheets/win screen.png"));
             playAgainbtn[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Play Again Button.png"));
-
+            
+            borderEmpty = ImageIO.read(getClass().getResourceAsStream("/Sheets/borderEmpty.png"));
             loseScreen = ImageIO.read(getClass().getResourceAsStream("/Sheets/diedScreen.jpg"));
             tryAgainbtn[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/tryagain.png"));
             
