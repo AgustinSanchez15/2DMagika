@@ -74,6 +74,7 @@ public class Door extends StaticEntity {
 
 		if(isBeinghurt()){
 			setHealth(10000000);
+			handler.getWorld().getEntityManager().getPlayer().setHealth(DEFAULT_HEALTH);
 		}
 
 		if(handler.getKeyManager().attbut){
