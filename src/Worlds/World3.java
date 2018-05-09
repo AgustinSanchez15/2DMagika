@@ -3,6 +3,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import Game.Entities.Creatures.Player;
+import Game.Entities.Creatures.SkelyEnemy;
 import Game.Entities.Statics.Chest3;
 import Game.Entities.Statics.Door3;
 import Game.GameStates.State;
@@ -28,6 +29,9 @@ public class World3 extends BaseWorld{
 
 		entityManager.addEntity(new Chest3(handler, 1475, 1270));
 		entityManager.addEntity(new Door3(handler, 1450, 0, null));
+		entityManager.addEntity(new SkelyEnemy(handler, 1200, 300));
+		entityManager.addEntity(new SkelyEnemy(handler, 300, 1200));
+		entityManager.addEntity(new SkelyEnemy(handler, 800, 1300));
 		
 		bounds = new Rectangle(0, 0, width,height);
 	}
@@ -44,14 +48,14 @@ public class World3 extends BaseWorld{
 
 	public void render(Graphics g) {
 		super.render(g);
-		g.drawImage(Images.narrowVision,(int)(handler.getWorld().entityManager.getPlayer().getX()-handler.getGameCamera().getxOffset()-725),(int)(handler.getWorld().entityManager.getPlayer().getY()-handler.getGameCamera().getyOffset()-getHeight()+(bounds.height/3)-680),1500,1500,null);
+		//g.drawImage(Images.narrowVision,(int)(handler.getWorld().entityManager.getPlayer().getX()-handler.getGameCamera().getxOffset()-725),(int)(handler.getWorld().entityManager.getPlayer().getY()-handler.getGameCamera().getyOffset()-getHeight()+(bounds.height/3)-680),1500,1500,null);
 		handler.getWorld().entityManager.getPlayer().getInventory().render(g);
 		handler.getWorld().entityManager.getPlayer().getSpellGUI().render(g);
 
 		for(Item pitem : handler.getWorld().entityManager.getPlayer().getInventory().getInventoryItems()) {
 			if(pitem.getName().equals("Border")) {	
 				if(count <= 1) {
-					g.drawImage(Images.items[4],(int)(handler.getWorld().entityManager.getPlayer().getX()-handler.getGameCamera().getxOffset())-570,(int)(handler.getWorld().entityManager.getPlayer().getY()-handler.getGameCamera().getyOffset()),600,300,null);
+					g.drawImage(Images.items[4],(int)(handler.getWorld().entityManager.getPlayer().getX()-handler.getGameCamera().getxOffset())-570,(int)(handler.getWorld().entityManager.getPlayer().getY()-handler.getGameCamera().getyOffset()),32,28,null);
 				} else {
 					pitem.setCount(pitem.getCount()-1);
 				}
